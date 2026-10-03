@@ -1,49 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-Future<void> main() async{
+import 'app.dart';
 
-    WidgetsFlutterBinding.ensureInitialized();
-
-  await Supabase.initialize(
-  
-    url: 'https://pnwtcmbdcywulywkwwdp.supabase.co',
-    
-    publishableKey: 'sb_publishable_VUVWBoLWEmUBVDT00suY2Q_ZOXxG0Q9'
-  
-  );
-
-  runApp(const MyApp());
-
+void main() {
+  // Todavía no hay backend: las pantallas usan repositorios mock
+  // (ver model/repository_providers.dart). Cuando se elija la base de datos,
+  // se crean nuevas implementaciones de los repositorios y se cambian ahí.
+  runApp(const ProviderScope(child: EcosistemaApp()));
 }
-
-class MyApp extends StatelessWidget{
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    
-    return const MaterialApp(
-
-      home: Scaffold(
-        backgroundColor: Colors.blueGrey,
-        body: Center(
-          child: 
-
-              Text(
-                'Test 3',
-                style: TextStyle(
-                  fontSize: 40,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.yellow
-                )),
-
-        ),
-      ),
-    );
-
-  }
-
-
-}
-
