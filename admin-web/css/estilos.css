@@ -373,6 +373,9 @@ input:focus, textarea:focus, button:focus-visible, a:focus-visible {
 .login__campo input { height: 46px; padding: 0 14px; width: 100%; }
 .clave { position: relative; }
 .clave input { padding-right: 52px; }
+/* Edge agrega su propio ojo a las contraseñas; se oculta para dejar solo el nuestro. */
+.clave input::-ms-reveal,
+.clave input::-ms-clear { display: none; }
 .clave button {
   position: absolute; right: 1px; top: 1px; width: 44px; height: 44px;
   border: none; background: transparent; border-radius: var(--radio);
