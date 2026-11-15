@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Iniciar sesión · Ecosistema Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <main class="login">
+    <div class="login__caja">
+      <div class="login__marca">
+        <div class="login__logo" id="logo"></div>
+        <div>
+          <h1>Ecosistema</h1>
+          <p>Panel de administración</p>
+        </div>
+      </div>
+
+      <form class="panel login__formulario" id="formulario" novalidate>
+        <h2>Inicia sesión</h2>
+        <p>Usa tu cuenta de administrador.</p>
+
+        <div class="login__campo">
+          <label for="correo">Correo electrónico</label>
+          <input id="correo" type="email" autocomplete="username" required>
+        </div>
+
+        <div class="login__campo">
+          <label for="clave">Contraseña</label>
+          <div class="clave">
+            <input id="clave" type="password" autocomplete="current-password" required>
+            <button type="button" id="ver-clave" aria-label="Mostrar contraseña" aria-pressed="false"></button>
+          </div>
+        </div>
+
+        <button type="submit" class="boton boton--principal boton--ancho">Iniciar sesión</button>
+
+        <div class="error" id="error" role="alert" hidden></div>
+      </form>
+
+      <p class="login__nota">Acceso solo para administradores.<br>Las cuentas de administrador se crean directamente en la base de datos.</p>
+    </div>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/datos.js"></script>
+  <script src="js/comun.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reportes · Ecosistema Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <div class="app">
+    <nav class="menu" id="menu" aria-label="Menú principal"></nav>
+
+    <main class="contenido">
+      <div class="contenido__ancho">
+        <header class="encabezado">
+          <h1>Reportes</h1>
+          <p>Quejas sobre un negocio (su servicio o comportamiento). Si el problema es solo una foto, producto o descripción, envíalo a Moderación. Los más recientes van primero.</p>
+        </header>
+
+        <div class="herramientas">
+          <div class="buscador">
+            <label for="buscar" class="solo-lectores">Buscar reportes</label>
+            <span id="icono-buscar"></span>
+            <input id="buscar" type="search" placeholder="Buscar por número (ej. 3 o REP-003), negocio, cliente o motivo">
+          </div>
+          <div class="filtros" id="filtros" role="group" aria-label="Filtrar por estado"></div>
+        </div>
+
+        <section class="panel lista" aria-label="Lista de reportes">
+          <div class="lista__interior" style="--columnas: 0.9fr 1.6fr 1.6fr 1.2fr 1.3fr 20px; min-width: 720px">
+            <div class="lista__encabezado" aria-hidden="true">
+              <span>Reporte</span><span>Negocio reportado</span><span>Motivo</span><span>Reportado por</span><span>Estado</span><span></span>
+            </div>
+            <div id="filas"></div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div class="capa-modal" id="capa-modal" hidden></div>
+  <div class="aviso" id="aviso" role="status" hidden></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/datos.js"></script>
+  <script src="js/comun.js"></script>
+  <script src="js/reportes.js"></script>
+</body>
+</html>
