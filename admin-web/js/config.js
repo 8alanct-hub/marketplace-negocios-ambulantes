@@ -7,5 +7,5 @@
    ========================================================= */
 
 const CONFIG = {
-  API_URL: '',
+  API_URL: 'https://marketplace-negocios-ambulantes.onrender.com/api',
 };
