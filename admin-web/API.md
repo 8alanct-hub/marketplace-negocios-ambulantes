@@ -160,50 +160,12 @@ El servidor guarda **quién** y **cuándo** (el administrador del token y la fec
 
 ---
 
-## 4. Tablas sugeridas (además de las de la app)
+## 4. Base de datos
 
-```sql
--- En usuarios y negocios: estado y datos de la suspensión
-ALTER TABLE usuarios ADD COLUMN motivo_suspension VARCHAR(255) NULL;
-ALTER TABLE usuarios ADD COLUMN suspendido_por INT NULL;
-ALTER TABLE usuarios ADD COLUMN fecha_suspension DATETIME NULL;
-ALTER TABLE negocios ADD COLUMN motivo_suspension VARCHAR(255) NULL;
-ALTER TABLE negocios ADD COLUMN suspendido_por INT NULL;
-ALTER TABLE negocios ADD COLUMN fecha_suspension DATETIME NULL;
+La base de datos **ya está creada en Supabase (PostgreSQL)**. Los scripts y la guía están en la
+carpeta [`database/`](../database/README.md) del repositorio.
 
-CREATE TABLE reportes (
-  id_reporte        INT AUTO_INCREMENT PRIMARY KEY,   -- se muestra como REP-001
-  id_negocio        INT NOT NULL,
-  id_usuario        INT NOT NULL,                     -- quién reporta
-  motivo            VARCHAR(120) NOT NULL,
-  descripcion       TEXT NOT NULL,
-  estado            ENUM('Pendiente','En revisión','Resuelto','Descartado','Enviado a Moderación') NOT NULL DEFAULT 'Pendiente',
-  id_moderacion_origen INT NULL,                      -- si vino de Moderación
-  nota_interna      TEXT NULL,
-  cerrado_por       INT NULL,
-  fecha_cierre      DATETIME NULL,
-  fecha_creacion    DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (id_negocio) REFERENCES negocios(id_negocio),
-  FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario)
-) DEFAULT CHARSET = utf8mb4;
-
-CREATE TABLE moderacion (
-  id_moderacion     INT AUTO_INCREMENT PRIMARY KEY,   -- se muestra como MOD-001
-  tipo              ENUM('Foto de producto','Producto','Descripción del negocio','Contenido del negocio') NOT NULL,
-  id_negocio        INT NOT NULL,
-  id_producto       INT NULL,                         -- si es una foto o un producto
-  id_usuario        INT NOT NULL,                     -- quién reporta
-  motivo            VARCHAR(120) NOT NULL,
-  estado            ENUM('Por revisar','Mantenido','Quitado','Enviado a Reportes') NOT NULL DEFAULT 'Por revisar',
-  id_reporte_origen INT NULL,                         -- si vino de Reportes
-  mensaje_dueno     TEXT NULL,
-  cerrado_por       INT NULL,
-  fecha_cierre      DATETIME NULL,
-  fecha_creacion    DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (id_negocio) REFERENCES negocios(id_negocio),
-  FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario)
-) DEFAULT CHARSET = utf8mb4;
-```
-
-El texto `origen` y `cierre` que espera la web se puede armar en la API a partir de
-`id_*_origen`, `cerrado_por` y `fecha_cierre`.
+Las vistas `v_admin_usuarios`, `v_admin_negocios`, `v_admin_reportes` y `v_admin_moderacion`
+devuelven exactamente el JSON de la sección 2, así que cada `GET` es un `select * from` la vista.
+Los botones «Enviar a…» usan las funciones `admin_enviar_reporte_a_moderacion` y
+`admin_enviar_contenido_a_reportes`, y el login usa `verificar_login`.
