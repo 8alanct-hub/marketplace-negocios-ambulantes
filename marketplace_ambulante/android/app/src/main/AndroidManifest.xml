@@ -7,7 +7,7 @@
     <!-- Fotos: image_picker usa el selector de fotos del sistema y la app de
          cámara, así que no necesita permisos de almacenamiento aquí. -->
     <application
-        android:label="marketplace_ambulante"
+        android:label="Marketplace Ambulante"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

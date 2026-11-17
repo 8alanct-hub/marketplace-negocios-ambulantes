@@ -1,6 +1,6 @@
 {
-    "name": "marketplace_ambulante",
-    "short_name": "marketplace_ambulante",
+    "name": "Marketplace Ambulante",
+    "short_name": "Marketplace Ambulante",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
