@@ -1,9 +1,9 @@
 # Base de datos · Ecosistema para negocios
 
-**PostgreSQL en Supabase** — proyecto `ecosistema-negocios` (región São Paulo, plan gratis).
+**PostgreSQL en Supabase** — organización `marketplace_ambulante`, proyecto `marketplace_ambulante` (región us-east-2).
 
-- URL del proyecto: `https://commhwaijcyyfwleyopt.supabase.co`
-- Panel: https://supabase.com/dashboard/project/commhwaijcyyfwleyopt
+- URL del proyecto: `https://pnwtcmbdcywulywkwwdp.supabase.co`
+- Panel: https://supabase.com/dashboard/project/pnwtcmbdcywulywkwwdp
 
 Ya está creada y con datos de prueba. Estos archivos sirven para **volver a crearla**
 (en otro proyecto, o en un PostgreSQL local) y para ver cómo está hecha.
@@ -15,6 +15,7 @@ Ya está creada y con datos de prueba. Estos archivos sirven para **volver a cre
 | `01_esquema.sql` | Tablas, reglas (CHECK), índices, triggers y seguridad (RLS). |
 | `02_vistas_y_funciones.sql` | Vistas para el panel web y funciones (login, registro, enviar entre Reportes y Moderación). |
 | `03_datos_prueba.sql` | Los mismos datos de prueba de la app y del panel. Contraseña de todas las cuentas: `Prueba123`. |
+| `04_imagenes.sql` | Tabla `imagenes`: fotos que suben los negocios desde la app (portada, logo, productos). |
 
 En Supabase: **SQL Editor → New query**, pegar cada archivo y **Run**, en orden.
 
@@ -31,6 +32,7 @@ En Supabase: **SQL Editor → New query**, pegar cada archivo y **Run**, en orde
 | `conversaciones`, `mensajes` | Chat cliente–negocio (una conversación por pareja). |
 | `reportes` | Quejas sobre un **negocio**. |
 | `moderacion` | Un **contenido** puntual (foto, producto, descripción). |
+| `imagenes` | Fotos subidas desde la app (máx. 5 MB). La API las entrega en `/api/imagenes/<id>`. |
 
 Cambio respecto al diagrama original: `negocio_configuracion` se unió a `negocios`
 (tenía logo, portada y descripción repetidos); solo se conservaron los colores.

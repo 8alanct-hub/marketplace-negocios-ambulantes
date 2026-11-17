@@ -4,8 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'app.dart';
 
 void main() {
-  // Todavía no hay backend: las pantallas usan repositorios mock
-  // (ver model/repository_providers.dart). Cuando se elija la base de datos,
-  // se crean nuevas implementaciones de los repositorios y se cambian ahí.
+  // Los datos vienen de la API (core/constants/api_config.dart), que está
+  // conectada a la base de datos en Supabase. Qué implementación usa cada
+  // repositorio se decide en model/repository_providers.dart.
   runApp(const ProviderScope(child: EcosistemaApp()));
 }

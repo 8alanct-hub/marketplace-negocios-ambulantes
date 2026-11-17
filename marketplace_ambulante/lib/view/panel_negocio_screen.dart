@@ -153,11 +153,12 @@ class _PanelState extends ConsumerState<_Panel> {
             icon: const Icon(Icons.settings_outlined),
             onPressed: () => context.push(AppRoutes.configuracionNegocio),
           ),
-          const MenuCuenta(),
+          MenuCuenta(estadoNegocio: negocio.estado),
         ],
       ),
       body: Column(
         children: [
+          if (negocio.suspendido) const _AvisoSuspendido(),
           if (negocio.tipo == TipoNegocio.ambulante)
             _BannerUbicacion(
               negocio: negocio,
@@ -212,6 +213,34 @@ class _PanelState extends ConsumerState<_Panel> {
 }
 
 /// Recordatorio para ambulantes: mantener la ubicación al día.
+/// Aviso cuando el administrador suspendió el negocio.
+class _AvisoSuspendido extends StatelessWidget {
+  const _AvisoSuspendido();
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: AppColors.error.withValues(alpha: 0.1),
+      child: const Padding(
+        padding: EdgeInsets.all(12),
+        child: Row(
+          children: [
+            Icon(Icons.block, color: AppColors.error, size: 20),
+            SizedBox(width: 8),
+            Expanded(
+              child: Text(
+                'Tu negocio está suspendido: no aparece en el Marketplace y '
+                'no puedes hacer cambios. Escríbenos si crees que es un error.',
+                style: TextStyle(fontSize: 13, color: AppColors.error),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class _BannerUbicacion extends StatelessWidget {
   const _BannerUbicacion({
     required this.negocio,

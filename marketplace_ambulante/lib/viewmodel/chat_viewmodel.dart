@@ -62,8 +62,10 @@ class ChatViewModel extends Notifier<bool> {
       // La lista de chats muestra el último mensaje: que se actualice.
       ref.invalidate(conversacionesProvider);
       return const Exito();
-    } catch (_) {
-      return const Fallo('No se pudo enviar el mensaje. Intenta de nuevo.');
+    } catch (e) {
+      return Fallo(
+        mensajeDeError(e, 'No se pudo enviar el mensaje. Intenta de nuevo.'),
+      );
     } finally {
       if (ref.mounted) state = false;
     }

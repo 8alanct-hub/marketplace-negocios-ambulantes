@@ -1,4 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Internet: la app se conecta a la API. -->
+    <uses-permission android:name="android.permission.INTERNET" />
     <!-- Ubicación del negocio (paquete geolocator). -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />

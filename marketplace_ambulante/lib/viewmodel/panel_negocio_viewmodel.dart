@@ -122,9 +122,9 @@ class PanelNegocioViewModel extends AsyncNotifier<PanelNegocioState> {
     } on UbicacionException catch (e) {
       if (ref.mounted) _emitir(_actual.copyWith(ubicando: false));
       return resultadoDeUbicacion(e);
-    } catch (_) {
+    } catch (e) {
       if (ref.mounted) _emitir(_actual.copyWith(ubicando: false));
-      return const Fallo('No pudimos actualizar tu ubicación.');
+      return Fallo(mensajeDeError(e, 'No pudimos actualizar tu ubicación.'));
     }
   }
 

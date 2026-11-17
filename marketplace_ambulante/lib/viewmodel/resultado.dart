@@ -1,3 +1,4 @@
+import '../model/api_cliente.dart';
 import '../model/ubicacion_service.dart';
 
 /// Resultado de una acción del ViewModel, para que la View sepa qué mostrar.
@@ -15,6 +16,12 @@ class Fallo extends Resultado {
   const Fallo(this.mensaje);
   final String mensaje;
 }
+
+/// Mensaje para mostrar cuando algo falla: si la API explicó qué pasó
+/// (por ejemplo, "Tu negocio está suspendido..."), se usa ese texto;
+/// si no, [porDefecto].
+String mensajeDeError(Object error, String porDefecto) =>
+    error is ApiException ? error.mensaje : porDefecto;
 
 enum AjustesDestino { app, ubicacion }
 

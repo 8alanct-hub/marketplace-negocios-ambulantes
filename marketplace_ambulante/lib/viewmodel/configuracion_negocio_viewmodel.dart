@@ -212,8 +212,10 @@ class ConfiguracionNegocioViewModel
       }
       _emitir(_actual.copyWith(productos: lista));
       return const Exito();
-    } catch (_) {
-      return const Fallo('No se pudo guardar el producto. Intenta de nuevo.');
+    } catch (e) {
+      return Fallo(
+        mensajeDeError(e, 'No se pudo guardar el producto. Intenta de nuevo.'),
+      );
     }
   }
 
@@ -225,8 +227,8 @@ class ConfiguracionNegocioViewModel
         productos: _actual.productos.where((p) => p.id != productoId).toList(),
       ));
       return const Exito();
-    } catch (_) {
-      return const Fallo('No se pudo eliminar el producto.');
+    } catch (e) {
+      return Fallo(mensajeDeError(e, 'No se pudo eliminar el producto.'));
     }
   }
 
@@ -290,10 +292,10 @@ class ConfiguracionNegocioViewModel
         limpiarImagenesNuevas: true,
       ));
       return const Exito();
-    } catch (_) {
+    } catch (e) {
       if (ref.mounted) _emitir(_actual.copyWith(guardando: false));
-      return const Fallo(
-        'No se pudieron guardar los cambios. Intenta de nuevo.',
+      return Fallo(
+        mensajeDeError(e, 'No se pudieron guardar los cambios. Intenta de nuevo.'),
       );
     }
   }

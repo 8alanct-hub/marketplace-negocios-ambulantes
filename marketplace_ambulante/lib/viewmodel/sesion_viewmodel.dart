@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../model/repository_providers.dart';
 import '../model/usuario.dart';
 
 /// Usuario con sesión iniciada (null = nadie ha iniciado sesión).
@@ -12,7 +13,11 @@ class SesionViewModel extends Notifier<Usuario?> {
 
   void actualizar(Usuario usuario) => state = usuario;
 
-  void cerrar() => state = null;
+  void cerrar() {
+    // Olvida el token: las siguientes peticiones a la API ya no llevan sesión.
+    ref.read(apiClienteProvider).token = null;
+    state = null;
+  }
 }
 
 final sesionProvider =

@@ -10,6 +10,17 @@ extension TipoNegocioTexto on TipoNegocio {
       };
 }
 
+/// Columna `estado` de `negocios`. Lo cambia el administrador desde el
+/// panel web: un negocio suspendido no aparece en el Marketplace.
+enum EstadoNegocio { activo, suspendido }
+
+extension EstadoNegocioTexto on EstadoNegocio {
+  String get etiqueta => switch (this) {
+        EstadoNegocio.activo => 'Activo',
+        EstadoNegocio.suspendido => 'Suspendido',
+      };
+}
+
 /// Tabla `negocios`.
 class Negocio {
   const Negocio({
@@ -25,6 +36,7 @@ class Negocio {
     this.ubicacionActualizada,
     this.logoUrl,
     this.bannerUrl,
+    this.estado = EstadoNegocio.activo,
   });
 
   final String id;
@@ -50,6 +62,11 @@ class Negocio {
 
   final String? logoUrl;
   final String? bannerUrl;
+
+  /// Solo lo cambia el administrador (no se envía al guardar).
+  final EstadoNegocio estado;
+
+  bool get suspendido => estado == EstadoNegocio.suspendido;
 
   bool get tieneUbicacion => latitud != null && longitud != null;
 
@@ -78,5 +95,6 @@ class Negocio {
         ubicacionActualizada: ubicacionActualizada ?? this.ubicacionActualizada,
         logoUrl: logoUrl ?? this.logoUrl,
         bannerUrl: bannerUrl ?? this.bannerUrl,
+        estado: estado,
       );
 }

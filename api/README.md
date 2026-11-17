@@ -1,9 +1,14 @@
 # API del Ecosistema para negocios
 
-API en **Node.js + Express** que conecta el panel web de administración (`../admin-web`) con la base de datos PostgreSQL en **Supabase** (`../database`). Más adelante también la usará la app de Flutter.
+API en **Node.js + Express** que conecta con la base de datos PostgreSQL en **Supabase** (`../database`):
+
+- el panel web de administración (`../admin-web`), con las rutas `/api/admin/...` (ver `../admin-web/API.md`);
+- la app de Flutter (`../marketplace_ambulante`), con las rutas `/api/app/...` (ver **`API_APP.md`**).
 
 ```
-admin-web  ──fetch + token──▶  API (este proyecto)  ──pg──▶  Supabase (PostgreSQL)
+admin-web    ──┐
+               ├──token──▶  API (este proyecto)  ──pg──▶  Supabase (PostgreSQL)
+app Flutter  ──┘
 ```
 
 La web **nunca** se conecta directo a la base de datos: la contraseña de la base solo vive en las variables de entorno de la API.
@@ -16,6 +21,7 @@ La web **nunca** se conecta directo a la base de datos: la contraseña de la bas
 | `src/db.js` | Conexión a la base (`DATABASE_URL`) y ayudas `consultar` / `transaccion` |
 | `src/auth.js` | `POST /api/admin/login` y el middleware `soloAdmin` (token JWT de 8 h) |
 | `src/rutas/admin.js` | Rutas del panel (ver `../admin-web/API.md`) |
+| `src/rutas/app.js` | Rutas de la app móvil (ver `API_APP.md`) |
 | `.env.example` | Variables que necesita la API (copiar a `.env`) |
 
 ## Rutas
@@ -30,6 +36,8 @@ La web **nunca** se conecta directo a la base de datos: la contraseña de la bas
 | POST | `/api/admin/reportes/:id/enviar-a-moderacion` | Crea un caso MOD-00X |
 | PATCH | `/api/admin/moderacion/:id` | Mantener / quitar / volver a revisar |
 | POST | `/api/admin/moderacion/:id/enviar-a-reportes` | Crea un reporte REP-00X |
+| GET | `/api/imagenes/:id` | Fotos que suben los negocios (pública) |
+| … | `/api/app/...` | Rutas de la app: cuentas, negocios, productos, pedidos y chat (ver `API_APP.md`) |
 
 Todas las rutas `/api/admin/*` (menos el login) piden el encabezado `Authorization: Bearer <token>`.
 

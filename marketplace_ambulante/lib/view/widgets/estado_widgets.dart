@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../core/router/app_router.dart';
 import '../../core/theme/app_theme.dart';
+import '../../model/negocio.dart';
 import '../../viewmodel/sesion_viewmodel.dart';
 
 /// Error al cargar una pantalla, con "Reintentar".
@@ -75,7 +76,11 @@ class EstadoVacio extends StatelessWidget {
 
 /// Botón de cuenta en la barra superior con la opción "Cerrar sesión".
 class MenuCuenta extends ConsumerWidget {
-  const MenuCuenta({super.key});
+  const MenuCuenta({super.key, this.estadoNegocio});
+
+  /// Solo para cuentas de negocio: muestra si el negocio está activo o
+  /// suspendido (lo decide el administrador en el panel web).
+  final EstadoNegocio? estadoNegocio;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -97,6 +102,28 @@ class MenuCuenta extends ConsumerWidget {
             child: Text(
               '${sesion.nombreCompleto}\n${sesion.email}',
               style: const TextStyle(fontSize: 13),
+            ),
+          ),
+        if (estadoNegocio != null)
+          PopupMenuItem<String>(
+            enabled: false,
+            child: Row(
+              children: [
+                Icon(
+                  estadoNegocio == EstadoNegocio.activo
+                      ? Icons.check_circle_outline
+                      : Icons.block,
+                  size: 18,
+                  color: estadoNegocio == EstadoNegocio.activo
+                      ? Colors.green.shade700
+                      : AppColors.error,
+                ),
+                const SizedBox(width: 8),
+                Text(
+                  'Estado de la cuenta: ${estadoNegocio!.etiqueta}',
+                  style: const TextStyle(fontSize: 13, color: AppColors.negro),
+                ),
+              ],
             ),
           ),
         const PopupMenuItem<String>(
