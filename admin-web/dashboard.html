@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard · Ecosistema Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <div class="app">
+    <nav class="menu" id="menu" aria-label="Menú principal"></nav>
+
+    <main class="contenido">
+      <div class="contenido__ancho">
+        <header class="encabezado">
+          <p id="fecha"></p>
+          <h1 id="saludo">Hola</h1>
+          <p>Así está la plataforma hoy.</p>
+        </header>
+
+        <section class="resumen" id="resumen" aria-label="Resumen"></section>
+
+        <section class="panel">
+          <div class="panel__titulo">
+            <h2>Reportes recientes</h2>
+            <a href="reportes.html">Ver todos</a>
+          </div>
+          <div class="lista">
+            <div class="lista__interior" style="--columnas: 2fr 1.6fr 1fr 1.2fr 20px">
+              <div class="lista__encabezado" aria-hidden="true">
+                <span>Negocio reportado</span><span>Motivo</span><span>Fecha</span><span>Estado</span><span></span>
+              </div>
+              <div id="reportes-recientes"></div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div class="capa-modal" id="capa-modal" hidden></div>
+  <div class="aviso" id="aviso" role="status" hidden></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/datos.js"></script>
+  <script src="js/comun.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

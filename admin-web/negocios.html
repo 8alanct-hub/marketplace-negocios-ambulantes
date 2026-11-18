@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Negocios · Ecosistema Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <div class="app">
+    <nav class="menu" id="menu" aria-label="Menú principal"></nav>
+
+    <main class="contenido">
+      <div class="contenido__ancho">
+        <header class="encabezado">
+          <h1>Negocios</h1>
+          <p>Solo los negocios activos aparecen en el Marketplace de la app.</p>
+        </header>
+
+        <div class="herramientas">
+          <div class="buscador">
+            <label for="buscar" class="solo-lectores">Buscar negocios</label>
+            <span id="icono-buscar"></span>
+            <input id="buscar" type="search" placeholder="Buscar por nombre, dueño o correo">
+          </div>
+          <div class="filtros" id="filtros" role="group" aria-label="Filtrar negocios"></div>
+        </div>
+
+        <div class="dos-columnas">
+          <section class="panel lista" aria-label="Lista de negocios">
+            <div class="lista__interior" style="--columnas: 2.4fr 1.3fr 1fr 1fr 20px">
+              <div class="lista__encabezado" aria-hidden="true">
+                <span>Negocio (A–Z)</span><span>Propietario</span><span>Registro</span><span>Estado</span><span></span>
+              </div>
+              <div id="filas"></div>
+            </div>
+          </section>
+
+          <aside class="panel detalle" id="detalle" aria-label="Detalle del negocio"></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="capa-modal" id="capa-modal" hidden></div>
+  <div class="aviso" id="aviso" role="status" hidden></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/datos.js"></script>
+  <script src="js/comun.js"></script>
+  <script src="js/negocios.js"></script>
+</body>
+</html>

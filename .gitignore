@@ -1,0 +1,44 @@
+
+# Archivos generados por Flutter
+**/build/
+**/.dart_tool/
+**/ephemeral/
+**/.plugin_symlinks/
+
+# Entornos y dependencias locales
+**/venv/
+**/.venv/
+**/node_modules/
+
+# Configuración y secretos
+**/.env
+**/.env.*
+
+# Paquetes comprimidos locales
+*.zip
+
+# Flutter y Dart
+**/.dart_tool/
+**/.flutter-plugins
+**/.flutter-plugins-dependencies
+**/build/
+**/ephemeral/
+**/.plugin_symlinks/
+
+# Android y Gradle
+**/.gradle/
+**/local.properties
+
+# Python
+**/__pycache__/
+*.py[cod]
+**/venv/
+**/.venv/
+
+# Secretos
+.env
+.env.*
+!.env.example
+
+# Archivos comprimidos
+*.zip

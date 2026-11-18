@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Moderación · Ecosistema Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <div class="app">
+    <nav class="menu" id="menu" aria-label="Menú principal"></nav>
+
+    <main class="contenido">
+      <div class="contenido__ancho">
+        <header class="encabezado">
+          <h1>Moderación</h1>
+          <p>Fotos, productos y descripciones que los clientes marcaron como inapropiados. Los más recientes van primero.</p>
+        </header>
+
+        <!-- Qué hace cada acción (arriba, antes de la lista) -->
+        <section class="ayudas" aria-label="Qué hace cada acción">
+          <div class="panel ayuda">
+            <span class="ayuda__icono" id="icono-mantener"></span>
+            <span><strong>Mantener:</strong> el contenido sigue publicado y el caso pasa a «Mantenidos».</span>
+          </div>
+          <div class="panel ayuda">
+            <span class="ayuda__icono ayuda__icono--rojo" id="icono-quitar"></span>
+            <span><strong>Quitar:</strong> el contenido deja de verse en la app y el dueño del negocio recibe un aviso con el motivo para corregirlo.</span>
+          </div>
+          <div class="panel ayuda">
+            <span class="ayuda__icono ayuda__icono--azul" id="icono-enviar"></span>
+            <span><strong>Enviar a Reportes:</strong> cuando el problema es el negocio y no solo el contenido (su servicio, o vuelve a subir lo que se le quitó). Allí se decide si se suspende.</span>
+          </div>
+        </section>
+
+        <div class="herramientas">
+          <div class="buscador">
+            <label for="buscar" class="solo-lectores">Buscar contenido</label>
+            <span id="icono-buscar"></span>
+            <input id="buscar" type="search" placeholder="Buscar por número, negocio, tipo o motivo">
+          </div>
+          <div class="filtros" id="filtros" role="group" aria-label="Filtrar por estado"></div>
+        </div>
+
+        <section class="panel lista" aria-label="Contenido reportado">
+          <div class="lista__interior" style="--columnas: 0.9fr 1.3fr 1.5fr 1.8fr 1.2fr 20px; min-width: 720px">
+            <div class="lista__encabezado" aria-hidden="true">
+              <span>Caso</span><span>Tipo</span><span>Negocio</span><span>Motivo</span><span>Estado</span><span></span>
+            </div>
+            <div id="filas"></div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div class="capa-modal" id="capa-modal" hidden></div>
+  <div class="aviso" id="aviso" role="status" hidden></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/datos.js"></script>
+  <script src="js/comun.js"></script>
+  <script src="js/moderacion.js"></script>
+</body>
+</html>
